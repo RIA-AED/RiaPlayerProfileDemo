@@ -346,6 +346,10 @@ public class ProfileGUI {
             ItemStack head = new ItemStack(Material.PLAYER_HEAD);
             SkullMeta meta = (SkullMeta) head.getItemMeta();
             if (meta != null) {
+                // Set the skull owner to display the correct skin
+                OfflinePlayer author = Bukkit.getOfflinePlayer(comment.getAuthorUuid());
+                meta.setOwningPlayer(author);
+                
                 meta.setDisplayName("§e§l" + comment.getAuthorName());
                 
                 List<String> lore = new ArrayList<>();
