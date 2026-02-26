@@ -5,6 +5,7 @@ import dev.ignis.riaUserPages.config.ConfigManager;
 import dev.ignis.riaUserPages.database.*;
 import dev.ignis.riaUserPages.gui.GUIListener;
 import dev.ignis.riaUserPages.gui.ProfileGUI;
+import dev.ignis.riaUserPages.listener.PlayerListener;
 import dev.ignis.riaUserPages.localization.LocalizationManager;
 import dev.ignis.riaUserPages.serialization.BukkitItemSerializer;
 import dev.ignis.riaUserPages.serialization.ItemSerializer;
@@ -67,6 +68,7 @@ public final class RiaUserPages extends JavaPlugin {
 
         // Register listeners
         getServer().getPluginManager().registerEvents(new GUIListener(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
 
         getLogger().info("RIA Player Profile has been enabled!");
     }

@@ -153,14 +153,13 @@ public class DatabaseManager {
                 tablePrefix, tablePrefix
             ));
 
-            // Likes table
+            // Likes table - simplified: no unique constraint, allows multiple likes to same target
             stmt.executeUpdate(String.format(
                 "CREATE TABLE IF NOT EXISTS %slikes (" +
                 "id BIGINT AUTO_INCREMENT PRIMARY KEY," +
                 "liker_uuid VARCHAR(36) NOT NULL," +
                 "target_uuid VARCHAR(36) NOT NULL," +
                 "like_date DATE NOT NULL," +
-                "UNIQUE KEY unique_like (liker_uuid, target_uuid, like_date)," +
                 "FOREIGN KEY (target_uuid) REFERENCES %sprofiles(uuid) ON DELETE CASCADE" +
                 ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci",
                 tablePrefix, tablePrefix

@@ -453,12 +453,14 @@ public class ProfileCommand implements TabExecutor {
         } else if (args.length == 2) {
             switch (args[0].toLowerCase()) {
                 case "view":
-                case "setbio":
                 case "comment":
                     // Return online player names
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         completions.add(player.getName());
                     }
+                    break;
+                case "setbio":
+                    // No completions - bio text is free form
                     break;
                 case "admin":
                     if (sender.hasPermission("ria.admin.*")) {

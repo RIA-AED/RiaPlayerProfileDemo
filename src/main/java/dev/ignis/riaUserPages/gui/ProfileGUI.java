@@ -11,6 +11,7 @@ import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -127,7 +128,11 @@ public class ProfileGUI {
         ItemStack head = new ItemStack(Material.PLAYER_HEAD);
         SkullMeta meta = (SkullMeta) head.getItemMeta();
         if (meta != null) {
-            // Change display name based on view mode
+            // Set the skull owner to display the correct skin
+            OfflinePlayer owner = Bukkit.getOfflinePlayer(profile.getUuid());
+            meta.setOwningPlayer(owner);
+            
+            // Display name shows current view mode
             if (state.getViewMode() == ProfileGUIState.ViewMode.COMMENTS) {
                 meta.setDisplayName(lang.get("player-head.name-comments", "%player%", profile.getUsername()));
             } else {
@@ -144,8 +149,7 @@ public class ProfileGUI {
             lore.add("");
             lore.add(lang.get("player-head.likes-label") + profile.getTotalLikes());
             lore.add(lang.get("player-head.pages-label") + profile.getUnlockedPages());
-            lore.add("");
-            lore.add(lang.get("player-head.click-hint"));
+            // No click hint - player head is now display only
             
             meta.setLore(lore);
             head.setItemMeta(meta);
@@ -177,10 +181,15 @@ public class ProfileGUI {
         ItemStack item = new ItemStack(material);
         ItemMeta meta = item.getItemMeta();
         if (meta != null) {
-            meta.setDisplayName(lang.get("comments.name", "%count%", String.valueOf(commentCount)));
+            // Change name based on current view mode
+            if (state.getViewMode() == ProfileGUIState.ViewMode.COMMENTS) {
+                meta.setDisplayName(lang.get("comments.name-switch-profile", "%count%", String.valueOf(commentCount)));
+            } else {
+                meta.setDisplayName(lang.get("comments.name-switch-comments", "%count%", String.valueOf(commentCount)));
+            }
             
             List<String> lore = new ArrayList<>();
-            lore.add(lang.get("comments.click-hint"));
+            lore.add(lang.get("comments.click-hint-switch"));
             lore.add("");
             
             // Show recent comments
@@ -210,24 +219,28 @@ public class ProfileGUI {
         ItemStack item = new ItemStack(config.getLikeButtonItem());
         ItemMeta meta = item.getItemMeta();
         if (meta != null) {
-            meta.setDisplayName(lang.get("likes.name"));
-            
             int remainingLikes = plugin.getLikeService().getRemainingLikes(state.getViewerUuid());
-            boolean hasLikedToday = plugin.getLikeService().hasLikedToday(state.getViewerUuid(), profile.getUuid());
             
             List<String> lore = new ArrayList<>();
-            lore.add(lang.get("likes.total-label") + profile.getTotalLikes());
-            lore.add(lang.get("likes.remaining-label") + remainingLikes);
-            lore.add("");
             
-            if (state.isViewingOwnProfile()) {
-                lore.add(lang.get("likes.cannot-like-self"));
-            } else if (hasLikedToday) {
-                lore.add(lang.get("likes.already-liked"));
-            } else if (remainingLikes > 0) {
-                lore.add(lang.get("likes.can-like"));
+            // In comments view: show as "add comment" button
+            if (state.getViewMode() == ProfileGUIState.ViewMode.COMMENTS) {
+                meta.setDisplayName(lang.get("likes.name-comment-mode"));
+                lore.add(lang.get("likes.click-hint-comment"));
             } else {
-                lore.add(lang.get("likes.no-likes-remaining"));
+                // In profile view: show as "like" button
+                meta.setDisplayName(lang.get("likes.name"));
+                lore.add(lang.get("likes.total-label") + profile.getTotalLikes());
+                lore.add(lang.get("likes.remaining-label") + remainingLikes);
+                lore.add("");
+                
+                if (state.isViewingOwnProfile()) {
+                    lore.add(lang.get("likes.cannot-like-self"));
+                } else if (remainingLikes > 0) {
+                    lore.add(lang.get("likes.can-like"));
+                } else {
+                    lore.add(lang.get("likes.no-likes-remaining"));
+                }
             }
             
             meta.setLore(lore);
@@ -433,17 +446,19 @@ public class ProfileGUI {
         if (profile == null) return;
 
         switch (slot) {
-            case SLOT_PLAYER_HEAD:
+            case SLOT_COMMENTS:
                 // Toggle between profile and comments view
                 state.toggleViewMode();
                 state.setCurrentPage(1); // Reset to page 1 when switching
                 refreshGUI(player);
                 break;
-            case SLOT_COMMENTS:
-                handleCommentsClick(player, state, profile);
-                break;
             case SLOT_LIKES:
-                handleLikesClick(player, state, profile);
+                // In comments view: add comment, in profile view: like
+                if (state.getViewMode() == ProfileGUIState.ViewMode.COMMENTS) {
+                    handleCommentsClick(player, state, profile);
+                } else {
+                    handleLikesClick(player, state, profile);
+                }
                 break;
             case SLOT_PREV_PAGE:
                 if (state.getCurrentPage() > 1) {
@@ -504,9 +519,6 @@ public class ProfileGUI {
                                 "%player%", profile.getUsername(),
                                 "%remaining%", String.valueOf(remaining)));
                         refreshGUI(player);
-                        break;
-                    case ALREADY_LIKED:
-                        player.sendMessage(lang.getPrefixed("like-already"));
                         break;
                     case LIMIT_REACHED:
                         player.sendMessage(lang.getPrefixed("like-limit-reached"));

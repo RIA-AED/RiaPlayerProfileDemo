@@ -57,37 +57,41 @@ gui:
 
 # 玩家头像
 player-head:
-  name-profile: "§6§l%player% §7(点击查看留言)"
-  name-comments: "§6§l%player% §7(点击查看主页)"
+  name-profile: "§6§l%player% §7(个人主页)"
+  name-comments: "§6§l%player% §7(留言板)"
   bio-empty: "§7未设置签名"
   bio-label: "§7签名: §f"
   likes-label: "§7总点赞数: §e"
   pages-label: "§7已解锁页数: §e"
-  click-hint: "§e点击切换视图"
 
 # 注册日期
 register-date:
   name: "§6§l注册日期"
   joined-label: "§7加入时间: §f"
 
-# 留言按钮
+# 留言按钮 (现在用于切换视图)
 comments:
   name: "§d§l留言 §7(%count%条)"
+  name-switch-comments: "§d§l留言 §7(%count%条) §e[点击切换]"
+  name-switch-profile: "§d§l主页 §7(%count%条留言) §e[点击切换]"
   click-hint: "§7点击留言"
+  click-hint-switch: "§e点击切换视图"
   no-comments: "§7暂无留言"
   recent-label: "§7最近留言:"
   delete-hint: "§c点击删除此留言"
   id-label: "§7ID: "
 
-# 点赞按钮
+# 点赞按钮 (在留言视图下变为留言按钮)
 likes:
   name: "§e§l点赞"
+  name-comment-mode: "§d§l添加留言"
   total-label: "§7总点赞数: §e"
   remaining-label: "§7今日剩余点赞: §e"
   cannot-like-self: "§c不能给自己点赞"
   already-liked: "§a今天已点赞"
   can-like: "§e点击点赞!"
   no-likes-remaining: "§c今日点赞次数已用完"
+  click-hint-comment: "§e点击添加留言"
 
 # 翻页按钮
 pagination:

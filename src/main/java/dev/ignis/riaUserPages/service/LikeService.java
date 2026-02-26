@@ -12,6 +12,7 @@ import java.util.concurrent.CompletableFuture;
 
 /**
  * Service for managing profile likes.
+ * Simplified: only daily limit matters, can like same target multiple times.
  */
 public class LikeService {
 
@@ -32,13 +33,13 @@ public class LikeService {
      */
     public enum LikeResult {
         SUCCESS,
-        ALREADY_LIKED,
         LIMIT_REACHED,
         ERROR
     }
 
     /**
      * Like a player's profile.
+     * Can like same target multiple times, only limited by daily quota.
      */
     public CompletableFuture<LikeResult> likeProfile(Player liker, UUID targetUuid) {
         return CompletableFuture.supplyAsync(() -> {
@@ -48,12 +49,7 @@ public class LikeService {
                     return LikeResult.ERROR;
                 }
 
-                // Check if already liked today
-                if (likeDAO.hasLikedToday(liker.getUniqueId(), targetUuid)) {
-                    return LikeResult.ALREADY_LIKED;
-                }
-
-                // Check daily limit
+                // Check daily limit only
                 int todayLikes = likeDAO.getTodayLikeCount(liker.getUniqueId());
                 if (todayLikes >= config.getLikeLimitPerDay()) {
                     return LikeResult.LIMIT_REACHED;
@@ -74,13 +70,6 @@ public class LikeService {
                 return LikeResult.ERROR;
             }
         });
-    }
-
-    /**
-     * Check if a player has liked a target today.
-     */
-    public boolean hasLikedToday(UUID likerUuid, UUID targetUuid) {
-        return likeDAO.hasLikedToday(likerUuid, targetUuid);
     }
 
     /**

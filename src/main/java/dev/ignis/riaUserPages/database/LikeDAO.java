@@ -6,6 +6,7 @@ import java.util.UUID;
 
 /**
  * Data Access Object for likes.
+ * Simplified: allows multiple likes to the same target, only daily limit matters.
  */
 public class LikeDAO {
 
@@ -15,24 +16,6 @@ public class LikeDAO {
     public LikeDAO(DatabaseManager databaseManager) {
         this.databaseManager = databaseManager;
         this.tableName = databaseManager.getTablePrefix() + "likes";
-    }
-
-    /**
-     * Check if a player has liked a target today.
-     */
-    public boolean hasLikedToday(UUID likerUuid, UUID targetUuid) {
-        String sql = "SELECT 1 FROM " + tableName + " WHERE liker_uuid = ? AND target_uuid = ? AND like_date = ?";
-        
-        try (Connection conn = databaseManager.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, likerUuid.toString());
-            stmt.setString(2, targetUuid.toString());
-            stmt.setDate(3, Date.valueOf(LocalDate.now()));
-            ResultSet rs = stmt.executeQuery();
-            return rs.next();
-        } catch (SQLException e) {
-            throw new RuntimeException("Failed to check like status", e);
-        }
     }
 
     /**

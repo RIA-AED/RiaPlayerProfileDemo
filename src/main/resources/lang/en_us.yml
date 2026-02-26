@@ -57,37 +57,41 @@ gui:
 
 # Player Head
 player-head:
-  name-profile: "§6§l%player% §7(Click for Comments)"
-  name-comments: "§6§l%player% §7(Click for Profile)"
+  name-profile: "§6§l%player% §7(Profile)"
+  name-comments: "§6§l%player% §7(Comments)"
   bio-empty: "§7No bio set"
   bio-label: "§7Bio: §f"
   likes-label: "§7Total Likes: §e"
   pages-label: "§7Unlocked Pages: §e"
-  click-hint: "§eClick to switch view"
 
 # Register Date
 register-date:
   name: "§6§lRegister Date"
   joined-label: "§7Joined: §f"
 
-# Comments Button
+# Comments Button (now used to switch view)
 comments:
   name: "§d§lComments §7(%count%)"
+  name-switch-comments: "§d§lComments §7(%count%) §e[Click to Switch]"
+  name-switch-profile: "§d§lProfile §7(%count% comments) §e[Click to Switch]"
   click-hint: "§7Click to leave a comment"
+  click-hint-switch: "§eClick to switch view"
   no-comments: "§7No comments yet"
   recent-label: "§7Recent comments:"
   delete-hint: "§cClick to delete this comment"
   id-label: "§7ID: "
 
-# Likes Button
+# Likes Button (becomes comment button in comments view)
 likes:
   name: "§e§lLike"
+  name-comment-mode: "§d§lAdd Comment"
   total-label: "§7Total Likes: §e"
   remaining-label: "§7Your remaining likes today: §e"
   cannot-like-self: "§cYou cannot like your own profile"
   already-liked: "§aYou have liked this profile today"
   can-like: "§eClick to like!"
   no-likes-remaining: "§cYou have no likes remaining today"
+  click-hint-comment: "§eClick to add a comment"
 
 # Pagination Buttons
 pagination:
