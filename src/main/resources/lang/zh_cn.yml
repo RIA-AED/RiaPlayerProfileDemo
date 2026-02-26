@@ -1,0 +1,119 @@
+# ============================================
+# RIA Player Profile - 简体中文本地化
+# ============================================
+
+# 消息前缀
+prefix: "&8[&bRIA-个人主页&8] &r"
+
+# 通用消息
+no-permission: "&c你没有权限执行此操作。"
+player-not-found: "&c找不到该玩家。该玩家可能从未登录过服务器。"
+invalid-usage: "&c用法错误。正确用法: %usage%"
+database-error: "&c数据库错误，请稍后重试。"
+
+# 个人主页消息
+profile-opened: "&a正在打开 &e%player%&a 的个人主页。"
+bio-set: "&a你的签名已设置为: &r%bio%"
+bio-too-long: "&c签名太长，最大长度为 %max% 个字符。"
+
+# 点赞消息
+like-success: "&a你点赞了 &e%player%&a 的个人主页！ &7(今日剩余 %remaining% 次点赞)"
+like-already: "&c你今天已经点赞过这个主页了。"
+like-limit-reached: "&c你已达到今日点赞上限。"
+cannot-like-self: "&c不能给自己的主页点赞。"
+
+# 留言消息
+comment-success: "&a留言发布成功！"
+comment-too-long: "&c留言太长，最大长度为 %max% 个字符。"
+comment-empty: "&c留言不能为空。"
+comment-delete-success: "&a留言删除成功！"
+comment-delete-no-permission: "&c你只能删除自己主页上的留言。"
+comment-not-found: "&c留言不存在。"
+comment-delete-confirm: "&e确定要删除留言 #%id% 吗？"
+
+# 物品删除消息
+item-delete-confirm: "&e确定要删除这个物品吗？"
+item-delete-success: "&a物品删除成功！"
+
+# 确认消息
+no-pending-action: "&c没有待确认的操作。"
+action-cancelled: "&c操作已取消。"
+
+# 管理员消息
+reload-success: "&a配置重载成功！"
+clear-success: "&a已清除 &e%player%&a 第 %page% 页的 %count% 个物品。"
+reset-likes-success: "&a已重置 &e%player%&a 的点赞数。"
+unlock-success: "&a已为 &e%player%&a 解锁 %pages% 页。"
+lock-success: "&a已为 &e%player%&a 减少 %pages% 页，剩余 %remaining% 页。"
+invalid-page-count: "&c无效的页数。"
+migrate-success: "&a成功将数据从 &e%source%&a 迁移到 &e%target%&a。"
+migrate-error-target-exists: "&c目标玩家已有数据。设置 allow-overwrite: true 以覆盖。"
+migrate-error-same-player: "&c源玩家和目标玩家不能相同。"
+
+# GUI 标题
+gui:
+  title: "§8%player%的个人主页"
+  title-comments: "§8%player%的留言"
+
+# 玩家头像
+player-head:
+  name-profile: "§6§l%player% §7(点击查看留言)"
+  name-comments: "§6§l%player% §7(点击查看主页)"
+  bio-empty: "§7未设置签名"
+  bio-label: "§7签名: §f"
+  likes-label: "§7总点赞数: §e"
+  pages-label: "§7已解锁页数: §e"
+  click-hint: "§e点击切换视图"
+
+# 注册日期
+register-date:
+  name: "§6§l注册日期"
+  joined-label: "§7加入时间: §f"
+
+# 留言按钮
+comments:
+  name: "§d§l留言 §7(%count%条)"
+  click-hint: "§7点击留言"
+  no-comments: "§7暂无留言"
+  recent-label: "§7最近留言:"
+  delete-hint: "§c点击删除此留言"
+  id-label: "§7ID: "
+
+# 点赞按钮
+likes:
+  name: "§e§l点赞"
+  total-label: "§7总点赞数: §e"
+  remaining-label: "§7今日剩余点赞: §e"
+  cannot-like-self: "§c不能给自己点赞"
+  already-liked: "§a今天已点赞"
+  can-like: "§e点击点赞!"
+  no-likes-remaining: "§c今日点赞次数已用完"
+
+# 翻页按钮
+pagination:
+  prev: "§a§l上一页"
+  next: "§a§l下一页"
+  first-page: "§7已经是第一页"
+  last-page: "§7已经是最后一页"
+  page-info: "§7第 %current%/%max% 页"
+
+# 分隔符
+separator:
+  name: " "
+
+# 留言物品 (在留言视图中显示)
+comment-item:
+  author-label: "§7来自: §f"
+  date-label: "§7时间: §f"
+  click-delete: "§c点击删除此留言"
+
+# 空槽位
+empty-slot:
+  name: " "
+
+# 确认对话框
+confirm:
+  title: "§e确认操作"
+  confirm-button: "§a[§l确认§a]"
+  cancel-button: "§c[§l取消§c]"
+  timeout: "§7(30秒内有效)"

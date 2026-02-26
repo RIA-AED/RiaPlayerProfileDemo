@@ -1,0 +1,119 @@
+# ============================================
+# RIA Player Profile - English Localization
+# ============================================
+
+# Message prefix
+prefix: "&8[&bRIA-Profile&8] &r"
+
+# Common messages
+no-permission: "&cYou don't have permission to do this."
+player-not-found: "&cPlayer not found. The player may have never joined the server."
+invalid-usage: "&cInvalid usage. Use: %usage%"
+database-error: "&cA database error occurred. Please try again later."
+
+# Profile messages
+profile-opened: "&aOpening profile of &e%player%&a."
+bio-set: "&aYour bio has been set to: &r%bio%"
+bio-too-long: "&cBio is too long. Maximum length is %max% characters."
+
+# Like messages
+like-success: "&aYou liked &e%player%&a's profile! &7(%remaining% likes remaining today)"
+like-already: "&cYou have already liked this profile today."
+like-limit-reached: "&cYou have reached your daily like limit."
+cannot-like-self: "&cYou cannot like your own profile."
+
+# Comment messages
+comment-success: "&aComment posted successfully!"
+comment-too-long: "&cComment is too long. Maximum length is %max% characters."
+comment-empty: "&cComment cannot be empty."
+comment-delete-success: "&aComment deleted successfully!"
+comment-delete-no-permission: "&cYou can only delete comments on your own profile."
+comment-not-found: "&cComment not found."
+comment-delete-confirm: "&eAre you sure you want to delete comment #%id%?"
+
+# Item deletion messages
+item-delete-confirm: "&eAre you sure you want to delete this item?"
+item-delete-success: "&aItem deleted successfully!"
+
+# Confirmation messages
+no-pending-action: "&cNo pending action to confirm."
+action-cancelled: "&cAction cancelled."
+
+# Admin messages
+reload-success: "&aConfiguration reloaded successfully!"
+clear-success: "&aCleared %count% items from &e%player%&a's page %page%."
+reset-likes-success: "&aReset likes for &e%player%&a."
+unlock-success: "&aUnlocked %pages% pages for &e%player%&a."
+lock-success: "&aReduced %pages% pages for &e%player%&a, %remaining% pages remaining."
+invalid-page-count: "&cInvalid page count."
+migrate-success: "&aSuccessfully migrated data from &e%source%&a to &e%target%&a."
+migrate-error-target-exists: "&cTarget player already has data. Use allow-overwrite: true to override."
+migrate-error-same-player: "&cSource and target cannot be the same player."
+
+# GUI Titles
+gui:
+  title: "§8%player%'s Profile"
+  title-comments: "§8%player%'s Comments"
+
+# Player Head
+player-head:
+  name-profile: "§6§l%player% §7(Click for Comments)"
+  name-comments: "§6§l%player% §7(Click for Profile)"
+  bio-empty: "§7No bio set"
+  bio-label: "§7Bio: §f"
+  likes-label: "§7Total Likes: §e"
+  pages-label: "§7Unlocked Pages: §e"
+  click-hint: "§eClick to switch view"
+
+# Register Date
+register-date:
+  name: "§6§lRegister Date"
+  joined-label: "§7Joined: §f"
+
+# Comments Button
+comments:
+  name: "§d§lComments §7(%count%)"
+  click-hint: "§7Click to leave a comment"
+  no-comments: "§7No comments yet"
+  recent-label: "§7Recent comments:"
+  delete-hint: "§cClick to delete this comment"
+  id-label: "§7ID: "
+
+# Likes Button
+likes:
+  name: "§e§lLike"
+  total-label: "§7Total Likes: §e"
+  remaining-label: "§7Your remaining likes today: §e"
+  cannot-like-self: "§cYou cannot like your own profile"
+  already-liked: "§aYou have liked this profile today"
+  can-like: "§eClick to like!"
+  no-likes-remaining: "§cYou have no likes remaining today"
+
+# Pagination Buttons
+pagination:
+  prev: "§a§lPrevious Page"
+  next: "§a§lNext Page"
+  first-page: "§7You are on the first page"
+  last-page: "§7You are on the last page"
+  page-info: "§7Page %current%/%max%"
+
+# Separator
+separator:
+  name: " "
+
+# Comment Item (displayed in comments view)
+comment-item:
+  author-label: "§7From: §f"
+  date-label: "§7Date: §f"
+  click-delete: "§cClick to delete this comment"
+
+# Empty Slot
+empty-slot:
+  name: " "
+
+# Confirmation Dialog
+confirm:
+  title: "§eConfirm Action"
+  confirm-button: "§a[§lConfirm§a]"
+  cancel-button: "§c[§lCancel§c]"
+  timeout: "§7(Valid for 30 seconds)"

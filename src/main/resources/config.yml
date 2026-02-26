@@ -1,0 +1,68 @@
+# ============================================
+# RIA Player Profile - Configuration
+# ============================================
+
+# Language setting (zh_cn or en_us)
+language: zh_cn
+
+# Database Configuration
+database:
+  host: "localhost"
+  port: 3306
+  database: "ria_db"
+  user: "root"
+  password: "password"
+  table-prefix: "ria_"
+  # Connection pool settings
+  pool:
+    maximum-pool-size: 10
+    minimum-idle: 5
+    connection-timeout: 30000
+    idle-timeout: 600000
+    max-lifetime: 1800000
+
+# UI Configuration
+ui:
+  # Separator item between function area and display area
+  separator-item: "YELLOW_STAINED_GLASS_PANE"
+  
+  # Register date display item
+  register-date-item: "CLOCK"
+  
+  # Like button item
+  like-button-item: "SUNFLOWER"
+  
+  # Page navigation items
+  prev-page-item: "ARROW"
+  next-page-item: "ARROW"
+  
+  # Comment button with dynamic materials based on comment count
+  comment-button:
+    base-item: "AMETHYST_SHARD"
+    # Thresholds: comment count -> material
+    thresholds:
+      10: "BUDDING_AMETHYST"
+      50: "AMETHYST_CLUSTER"
+      100: "BEACON"
+  
+  # Number of recent comments to show in comment button lore
+  comments-display-count: 3
+
+# Settings
+settings:
+  # Maximum likes per day per player
+  like-limit-per-day: 10
+  
+  # Default pages for new players
+  default-pages: 1
+  
+  # Maximum pages a player can have
+  max-pages: 3
+  
+  # Maximum comment length
+  max-comment-length: 100
+
+# Migration settings
+migration:
+  # Allow overwriting target data during migration
+  allow-overwrite: false

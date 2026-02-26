@@ -1,0 +1,35 @@
+name: RiaUserPages
+version: ${version}
+main: dev.ignis.riaUserPages.RiaUserPages
+api-version: '1.20'
+author: RIA Team
+description: RIA Player Profile - Personal showcase page with MySQL storage
+
+commands:
+  ria-player-profile:
+    description: Main command for RIA Player Profile
+    usage: /<command> [view|setbio|comment|admin|confirm|cancel] [args...]
+    aliases: [riaprofile, rpp]
+
+permissions:
+  ria.profile.use:
+    description: Allow using basic profile commands
+    default: true
+  ria.profile.edit:
+    description: Allow editing own profile bio
+    default: true
+  ria.profile.comment:
+    description: Allow commenting on profiles
+    default: true
+  ria.profile.comment.delete:
+    description: Allow deleting comments on own profile
+    default: true
+  ria.admin.*:
+    description: All admin permissions
+    default: op
+    children:
+      ria.admin.reload: true
+      ria.admin.clear: true
+      ria.admin.resetlikes: true
+      ria.admin.unlock: true
+      ria.admin.migrate: true
